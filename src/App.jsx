@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-      <div>
+      {/* <div>
         <div>  
           <img src={viteLogo} className="logo" alt="Vite logo" />
            <img src={reactLogo} className="logo react" alt="React logo" />
@@ -34,7 +34,7 @@ function App() {
             reader.readAsDataURL(file);
           }
           } />
-      </div>
+      </div> */}
 
       <div style={{ width: "100vw", height: "100vh" }}>
         <PanoramaViewer imageUrl={imageFile} view={view} />
