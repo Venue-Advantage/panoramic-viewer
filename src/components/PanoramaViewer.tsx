@@ -8,7 +8,7 @@ const PanoramaViewer = ({ imageUrl, view }) => {
     // console.log("texture", texture);
     if (view === "sphere") {
         return (
-            <Canvas camera={{ position: [0, 0, 1], fov: 75 }}>
+            <Canvas camera={{ position: [0, 0, 2], fov: 20 }}>
                 <ambientLight intensity={0.5} />
                 <directionalLight position={[10, 10, 10]} />
 
@@ -20,9 +20,9 @@ const PanoramaViewer = ({ imageUrl, view }) => {
                 {/* Allows user to rotate the scene */}
                 <OrbitControls
                     enableZoom={true}
-                    zoomSpeed={1.2}   // Faster zooming
-                    minDistance={0.01} // Ultra close zoom-in
-                    maxDistance={5}      // Prevents zooming too far out
+                    zoomSpeed={0.5}   // Faster zooming
+                    minDistance={0} // Ultra close zoom-in
+                    maxDistance={15}      // Prevents zooming too far out
                     enablePan={false}
                     maxPolarAngle={Math.PI - 0.1}
                     minPolarAngle={0.1}
