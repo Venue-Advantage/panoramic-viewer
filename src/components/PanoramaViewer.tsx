@@ -18,7 +18,17 @@ const PanoramaViewer = ({ imageUrl, view }) => {
                 </Sphere>
 
                 {/* Allows user to rotate the scene */}
-                <OrbitControls enableZoom={false} />
+                <OrbitControls
+                    enableZoom={true}
+                    zoomSpeed={1.2}   // Faster zooming
+                    minDistance={0.01} // Ultra close zoom-in
+                    maxDistance={5}      // Prevents zooming too far out
+                    enablePan={false}
+                    maxPolarAngle={Math.PI - 0.1}
+                    minPolarAngle={0.1}
+                />
+
+                  {/* <OrbitControls  enableZoom={false} /> */}
             </Canvas>
         );
     } else if (view === "cube") {
