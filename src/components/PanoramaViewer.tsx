@@ -8,25 +8,26 @@ import { useMemo } from "react";
 
 const PanoramaViewer = ({ imageUrl, view, imageSet }) => {
     const texture: any = new THREE.TextureLoader().load(imageUrl);
-    // console.log("texture", texture);
-    const materials = useMemo(
-        () =>
-            imageSet.map(
-                (img: any) =>
-                    new THREE.MeshBasicMaterial({
-                        map: new THREE.TextureLoader().load(img),
-                        side: THREE.BackSide, // Render textures inside the cube
-                    })
-            ),
-        [imageSet]
-    );
+
+    const materials = useMemo(() => {
+        return imageSet.map((img, index) => {
+          const texture = new THREE.TextureLoader().load(img);
+          texture.wrapS = THREE.RepeatWrapping;
+          texture.repeat.x = -1; // Flips texture horizontally
+    
+          return new THREE.MeshBasicMaterial({
+            map: texture,
+            side: THREE.BackSide, // Render inside the cube
+          });
+        });
+      }, [imageSet]);
 
     if (view === "cube") {
         return (
             <Canvas camera={{ position: [0, 0, 0], fov: 90 }}>
                 <mesh>
                     <boxGeometry args={[10, 10, 10]} /> {/* Larger cube so we are inside */}
-                    {materials.map((material: any, index: any) => (
+                    {materials.map((material:any, index:any) => (
                         <meshBasicMaterial key={index} attach={`material-${index}`} {...material} />
                     ))}
                 </mesh>
@@ -44,21 +45,25 @@ const PanoramaViewer = ({ imageUrl, view, imageSet }) => {
                 </Canvas> */}
 
                 <OrbitControls
-
                     enableZoom={true}
-                    zoomSpeed={0.5}   // Faster zooming
-                    minDistance={0} // Ultra close zoom-in
-                    maxDistance={15}      // Prevents zooming too far out
+                    zoomSpeed={0.8}
+                    minDistance={1}
+                    maxDistance={1} // Prevent moving forward/backward
                     enablePan={false}
-                    maxPolarAngle={Math.PI - 0.1}
-                    minPolarAngle={0.1}
+                    enableRotate={true}
+
+                    // enableZoom={true}
+                    // zoomSpeed={0.5}   // Faster zooming
+                    // minDistance={0} // Ultra close zoom-in
+                    // maxDistance={15}      // Prevents zooming too far out
+                    // enablePan={false}
+                    // maxPolarAngle={Math.PI - 0.1}
+                    // minPolarAngle={0.1}
                 />
             </Canvas>
         );
     }
 
-
-    // OLD CODE
     // if (view === "sphere") {
     //     return (
     //         <Canvas camera={{ position: [0, 0, 2], fov: 20 }}>

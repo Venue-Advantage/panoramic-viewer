@@ -15,8 +15,8 @@ function App() {
   const [view, setView] = useState("cube")
   const [imageFile, setImageFile] = useState(KrpanoImg);
   const cubeImages = [
-    Front,
     Back,
+    Front,
     Top,
     Bottom,
     Left,
