@@ -1,0 +1,26 @@
+﻿<krpano>
+    <!-- Define the Scene -->
+    <scene name="myScene">
+        <!-- <view hlookat="0" vlookat="0" fov="90" /> -->
+		<view hlookat="-90" vlookat="0" fov="90" />
+		<!-- <preview url="./left.png" /> -->
+		<!-- <image>
+			<cube url="./front.png" />
+		</image> -->
+	<image type="CUBE">
+     <!-- <left url="./left.png" />
+     <front url="./front.png" />
+     <right url="./right.png" />
+     <back url="./back.png" />
+     <up url="./top.png" />
+     <down url="./bottom.png" /> -->
+      <left url="./back.png" /><!--correct -->
+     <front url="./left.png" /><!--correct -->
+     <right url="./front.png" /> <!--correct -->
+     <back url="./right.png" /><!--correct -->
+     <up url="./top.png" />  <!--correct -->
+     <down url="./bottom.png" /> <!--correct -->
+</image>
+
+    </scene>
+</krpano>
