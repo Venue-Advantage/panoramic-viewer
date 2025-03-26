@@ -43,7 +43,9 @@ const App = () => {
   }, [krpanoLoaded]);
 
 
-  return <div ref={krpanoRef} style={{ width: "800px", height: "800px" }} />;
+  // return <div ref={krpanoRef} style={{ width: "800px", height: "800px" }} />;
+  return <div ref={krpanoRef} style={{ width: "100vw", height: "100vh", position: "absolute", top: 0, left: 0 }} />;
+
 };
 
 export default App;
