@@ -1,7 +1,4 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import KrpanoImg from './assets/krpano-img.png';
+import { useEffect, useRef, useState } from "react";
 import Front from './assets/6-set-img-krpano/front.png';
 import Back from './assets/6-set-img-krpano/back.png';
 import Left from './assets/6-set-img-krpano/left.png';
@@ -9,51 +6,76 @@ import Right from './assets/6-set-img-krpano/right.png';
 import Top from './assets/6-set-img-krpano/top.png';
 import Bottom from './assets/6-set-img-krpano/bottom.png';
 import './App.css'
-import PanoramaViewer from './components/PanoramaViewer';
 
-function App() {
-  const [view, setView] = useState("cube")
-  const [imageFile, setImageFile] = useState(KrpanoImg);
-  const cubeImages = [
-    Back,
-    Front,
-    Top,
-    Bottom,
+const App = ({ }) => {
+  const krpanoRef = useRef(null);
+  const [krpanoLoaded, setKrpanoLoaded] = useState(false);
+  const images = [
     Left,
-    Right
+    Front,
+    Right,
+    Back,
+    Top,
+    Bottom
   ];
-  return (
-    <>
-      {/* <div>
-        <div>  
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-           <img src={reactLogo} className="logo react" alt="React logo" />
-        </div>
-        <div>
-          <a onClick={() => setView("sphere")}> Sphere </a>
-          <a onClick={() => setView("cube")}> Cube </a>
-        </div>
-      </div>
-      <div>
-        Upload your 360 image
-        <input type="file" accept="image/*"
-          onChange={(e) => {
-            const file = e.target.files[0];
-            const reader = new FileReader();
-            reader.onload = (event) => {
-              const imageUrl = event.target.result;
-              setImageFile(imageUrl);
-            };
-            reader.readAsDataURL(file);
-          }
-          } />
-      </div> */}
 
-      <div style={{ width: "100vw", height: "100vh" }}>
-        <PanoramaViewer imageUrl={imageFile} view={view} imageSet={cubeImages} />
-      </div>
-    </>
-  )
-}
+  useEffect(() => {
+    const scriptId = "krpano-script";
 
-export default App
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement("script");
+      script.id = scriptId;
+      script.src = "/panoramic-viewer/krpano.js"; // Ensure this file is in public/
+      script.onload = () => {
+        console.log("krpano.js loaded successfully");
+        setKrpanoLoaded(true);
+      };
+      script.onerror = () => console.error("Error loading krpano.js");
+      document.body.appendChild(script);
+    } else {
+      setKrpanoLoaded(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!krpanoLoaded || !window.embedpano) return;
+
+    window.embedpano({
+      target: krpanoRef.current,
+      html5: "only",
+      passQueryParameters: true,
+      onready: (krpano) => {
+        console.log("krpano is ready");
+
+        if (krpano) {
+          // 🔹 CREATE A NEW SCENE DYNAMICALLY
+          krpano.call(`
+            addscene(scene1);
+            set(scene[scene1].name, "My Cube Scene");
+            set(scene[scene1].image.type, "CUBE");
+
+            ${images
+              .map(
+                (img, index) =>
+                  `set(scene[scene1].image.cube.${[
+                    "left",
+                    "front",
+                    "right",
+                    "back",
+                    "top",
+                    "bottom",
+                  ][index]}, "${img}");`
+              )
+              .join("\n")}
+
+            loadscene(scene1);
+          `);
+        }
+      },
+    });
+  }, [krpanoLoaded, images]);
+
+  return <div ref={krpanoRef} style={{ width: "800px", height: "800px" }} />;
+};
+
+export default App;
