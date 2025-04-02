@@ -2,7 +2,7 @@
     <scene name="myScene">
         <view hlookat="0" vlookat="0" fov="90" />
         <image>
-            <sphere url="./LevelSequence.0001.jpeg" />
+            <sphere url="./LevelSequence.0000.jpeg" />
         </image>
     </scene>
 </krpano>
