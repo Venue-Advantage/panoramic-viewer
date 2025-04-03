@@ -1,8 +1,28 @@
 ﻿<krpano>
+    <!-- Define the Scene -->
     <scene name="myScene">
-        <view hlookat="0" vlookat="0" fov="90" />
-        <image>
-            <sphere url="./LevelSequence.0000.jpeg" />
-        </image>
+        <!-- <view hlookat="0" vlookat="0" fov="90" /> -->
+		<view hlookat="0" vlookat="0" fov="90" fovtype="VFOV"/>
+		<!-- <preview url="./left.png" /> -->
+		<!-- <image>
+			<cube url="./front.png" />
+		</image> -->
+	<image type="CUBE">
+     <left url="./panorama_left.png" />
+     <front url="./panorama_front.png" />
+     <right url="./panorama_right.png" />
+     <back url="./panorama_back.png" />
+     <up url="./panorama_top.png"  />
+     <down url="./panorama_bottom.png" />
+
+      <!-- <left url="./back.png"  />
+     <front url="./left.png"  />
+     <right url="./front.png"  /> 
+     <back url="./right.png"  />
+     <up url="./top.png"  />  
+     <down url="./bottom.png"  /> 
+      -->
+</image>
+<display width="1550%" height="100%" details="16" texturefiltering="mipmap"/>
     </scene>
 </krpano>
