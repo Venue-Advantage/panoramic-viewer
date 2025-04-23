@@ -1,0 +1,14 @@
+<krpano>
+  <scene name="myScene">
+    <view hlookat="0" vlookat="0" fov="90" fovtype="VFOV"/>
+    <image type="CUBE">
+      <left url="{{IMG_BASE}}/panorama_left.png?ts={{TS}}" />
+      <front url="{{IMG_BASE}}/panorama_front.png?ts={{TS}}" />
+      <right url="{{IMG_BASE}}/panorama_right.png?ts={{TS}}" />
+      <back url="{{IMG_BASE}}/panorama_back.png?ts={{TS}}" />
+      <up url="{{IMG_BASE}}/panorama_top.png?ts={{TS}}" />
+      <down url="{{IMG_BASE}}/panorama_bottom.png?ts={{TS}}" />
+    </image>
+    <display width="1550%" height="100%" details="16" texturefiltering="mipmap"/>
+  </scene>
+</krpano>
