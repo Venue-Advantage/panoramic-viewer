@@ -2,12 +2,20 @@
   <scene name="myScene">
     <view hlookat="0" vlookat="0" fov="90" fovtype="VFOV"/>
     <image type="CUBE">
-      <left url="{{IMG_BASE}}/panorama_left.png?ts={{TS}}" />
+    <!-- Preview image shown while full images load -->
+      <preview url="{{IMG_BASE}}/preview.png?ts={{TS}}" />
+      <!-- <left url="{{IMG_BASE}}/panorama_left.png?ts={{TS}}" />
       <front url="{{IMG_BASE}}/panorama_front.png?ts={{TS}}" />
       <right url="{{IMG_BASE}}/panorama_right.png?ts={{TS}}" />
       <back url="{{IMG_BASE}}/panorama_back.png?ts={{TS}}" />
       <up url="{{IMG_BASE}}/panorama_top.png?ts={{TS}}" />
-      <down url="{{IMG_BASE}}/panorama_bottom.png?ts={{TS}}" />
+      <down url="{{IMG_BASE}}/panorama_bottom.png?ts={{TS}}" /> -->
+       <left url="{{IMG_BASE}}/2.png?ts={{TS}}" />
+      <front url="{{IMG_BASE}}/3.png?ts={{TS}}" />
+      <right url="{{IMG_BASE}}/4.png?ts={{TS}}" />
+      <back url="{{IMG_BASE}}/1.png?ts={{TS}}" />
+      <up url="{{IMG_BASE}}/5.png?ts={{TS}}" />
+      <down url="{{IMG_BASE}}/6.png?ts={{TS}}" />
     </image>
     <display width="1550%" height="100%" details="16" texturefiltering="mipmap"/>
   </scene>

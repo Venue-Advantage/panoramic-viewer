@@ -5,9 +5,9 @@ import './App.css'
 const App = () => {
   const krpanoRef = useRef(null);
   const [krpanoLoaded, setKrpanoLoaded] = useState(false);
-  const CDN_ACCOUNT_ID = "lzcu8n7b2"; // Set by imagekit/Cloudinary or any other CDN
-  const IMAGE_BASE_URL = `https://ik.imagekit.io/${CDN_ACCOUNT_ID}/kr-pano`; // Set by imagekit/Cloudinary or any other CDN
+  const IMAGE_BASE_URL = `https://lzabavobnrmycrqhzrfc.supabase.co/storage/v1/object/public/kr-pano-images/`; // Set by imagekit/Cloudinary or any other CDN
 
+  
   useEffect(() => {
     const scriptId = "krpano-script";
 
